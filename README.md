@@ -1,10 +1,10 @@
 # b7a10-chef-recipe-hunter-client-side-Miftahulislam2001
 
-### this project name (chafe cafe)
+### this project name (TastyCreations)
 
 ## Live Link
 
-Hosted in Firebase -> [Chafecafe](https://chafe-cafe.web.app/)
+Hosted in Firebase -> [TastyCreations](https://chef-recipe-hunter-169b4.web.app/)
 
 ## This website feature
 
