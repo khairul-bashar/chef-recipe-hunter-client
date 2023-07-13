@@ -2,6 +2,7 @@ import { useState } from "react";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { useAuth } from "../../AuthProvider/AuthProvider";
 
 const Header = () => {
@@ -80,6 +81,7 @@ const Header = () => {
           </li>
         </ul>
       </div>
+      <ToastContainer/>
     </nav>
   );
 };
