@@ -1,48 +1,85 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import { MdOutlineRestaurantMenu } from "react-icons/md";
+import { Link, NavLink } from "react-router-dom";
+import { useAuth } from "../../AuthProvider/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useAuth();
+  const [toggle, setToggle] = useState(false);
   return (
-    <nav className="bg-primary">
-        <div className="navbar container mx-auto">
-      <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">Tasty Creations</a>
+    <nav className="bg-base-200">
+      <div className="ui-container container mx-auto flex justify-between items-center py-3">
+        <Link to="/">
+          <h2 className="text-2xl font-bold">
+            Tasty<span className="text-[#289199]">Creations</span>
+          </h2>
+        </Link>
+        <span className="md:hidden text-xl">
+          {toggle ? (
+            <MdOutlineRestaurantMenu onClick={() => setToggle(!toggle)} />
+          ) : (
+            <HiOutlineMenuAlt2 onClick={() => setToggle(!toggle)} />
+          )}
+        </span>
+        <ul
+          className={`flex items-center duration-200 z-50 flex-col py-5 md:p-0 text-white bg-opacity-80 md:text-black top-14 bg-black md:bg-transparent w-full md:w-auto md:flex-row gap-3 absolute md:static ${
+            toggle ? "left-0" : "-left-full"
+          }`}
+        >
+          <li>
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/blog"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Blog
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/register"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Register
+            </NavLink>
+          </li>
+
+          <li>
+            {user?.photoURL ? (
+              <img
+                className="w-[35px] h-[35px] rounded-full"
+                src={user?.photoURL}
+                title={user.displayName}
+                alt=""
+              />
+            ) : (
+              ""
+            )}
+          </li>
+          <li>
+            {user ? (
+              <button
+                onClick={logOut}
+                className="bg-[#289199] px-4 py-2  text-white"
+              >
+                LogOut
+              </button>
+            ) : (
+              <button className="bg-[#289199] px-4 py-2 rounded text-white">
+                <Link to="/login">Login</Link>
+              </button>
+            )}
+          </li>
+        </ul>
       </div>
-      <div className="flex-none gap-2 hidden md:flex">
-        <div className="me-5">
-            <ul className="font-medium flex gap-4">
-                <Link to="/">Home</Link>
-                <Link to="/blog">Blog</Link>
-                <Link to="/contact-us">Contact us</Link>
-                <Link to="/login">Log in</Link>
-            </ul>
-        </div>
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1689004752~exp=1689005352~hmac=55b5ce6a489458578ed896ef4cc5b61c7caf18824e74e9046ce30ae141e09e39" />
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
     </nav>
   );
 };
