@@ -35,6 +35,16 @@ const Login = () => {
       });
     setError(null);
   };
+
+  const googleSingIn = () => {
+    signInWithGoogle()
+    .then(result => {
+      if (result.user) {
+         navigate(from, { replace: true });
+        console.log(result.user);
+      }
+    })
+  }
   return (
     <section className="ui-container items-center w-full gap-5">
       <section className="border rounded-xl p-[25px] mt-10 shadow-3xl mx-auto md:w-1/2">
@@ -87,7 +97,7 @@ const Login = () => {
             <hr className="w-[45%] bg-[#95A0A7]" />
           </div>
           <button
-            onClick={signInWithGoogle}
+            onClick={googleSingIn}
             className="p-[10px] border rounded w-full flex justify-center items-center gap-[6px] mt-[33px]"
           >
             <FcGoogle className="text-[32px]" />
