@@ -26,7 +26,7 @@ const Home = () => {
     <div>
       {isLoading ? (
          <div className='flex justify-center items-center h-[calc(100vh-68px)]'>
-      <span className="loading loading-spinner text-success"></span>
+      <span className="loading loading-spinner text-green-400 text-3xl"></span>
     </div>
       ) : (
         <div>
